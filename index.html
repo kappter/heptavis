@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Heptagram Visualizer</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <h1>Heptagram Visualizer</h1>
+  <div id="controls">
+    <button onclick="toggleRotation()">Toggle Rotation</button>
+    <button onclick="downloadSVG()">Download SVG</button>
+  </div>
+  <svg id="heptagramCanvas" width="600" height="600" viewBox="0 0 600 600"></svg>
+  <div id="tooltip" class="tooltip"></div>
+  <script src="script.js"></script>
+</body>
+</html>

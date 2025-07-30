@@ -1,0 +1,24 @@
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background: #111;
+  color: #eee;
+}
+#controls {
+  margin: 10px;
+}
+svg {
+  background: #222;
+  border: 1px solid #555;
+}
+.tooltip {
+  position: absolute;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 0.8em;
+  display: none;
+  pointer-events: none;
+}
