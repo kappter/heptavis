@@ -1,24 +1,26 @@
 const svg = document.getElementById("heptagramViz");
 const chakraToggle = document.getElementById("chakraToggle");
+const dayToggle = document.getElementById("dayToggle");
 const angleToggle = document.getElementById("angleToggle");
 const planetToggle = document.getElementById("planetToggle");
 const noteToggle = document.getElementById("noteToggle");
+const foodToggle = document.getElementById("foodToggle");
+const focusToggle = document.getElementById("focusToggle");
 const rotateToggle = document.getElementById("rotateToggle");
 const downloadBtn = document.getElementById("downloadBtn");
 
 const chakraData = [
-  { name: "Root", color: "#a63d40", planet: "Saturn", note: "C", degree: 0 },
-  { name: "Sacral", color: "#a65f3e", planet: "Venus", note: "D", degree: 51.43 },
-  { name: "Solar Plexus", color: "#a68c3d", planet: "Mars", note: "E", degree: 102.86 },
-  { name: "Heart", color: "#4d8c4d", planet: "Sun", note: "F♯", degree: 154.29 },
-  { name: "Throat", color: "#3f708c", planet: "Mercury", note: "G♯", degree: 205.72 },
-  { name: "Third Eye", color: "#5e4d8c", planet: "Moon", note: "A♯", degree: 257.15 },
-  { name: "Crown", color: "#7e3e8c", planet: "Jupiter", note: "B", degree: 308.58 }
+  { name: "Crown (Sahasrara)", day: "The Write Sunday", color: "#a63d40", body: "Whole Body Integration", exercise: "Yoga, Stretching, Breathing Exercises, Rest, Reflection", spiritual: "Spirituality, enlightenment, divine connection", focus: "Spirituality, Awareness, Unity", food: "Purple kale, figs, lavender tea, chia seeds, mushrooms, herbal infusions, and fasting-friendly foods", meaning: "Spiritual connection, enlightenment, mental clarity", note: "B", frequency: "963 Hz, 528 Hz", planet: "Sun", time: "11:00:00 PM" },
+  { name: "Third Eye (Ajna)", day: "Music Monday", color: "#a65f3e", body: "Forehead, Eyes, and Brain", exercise: "Meditation, Yoga Focus Training, Eye Exercises", spiritual: "Intuition, insight, perception", focus: "Intuition, Insight, Perception", food: "Purple grapes, eggplant, purple cabbage, blackberries, dark chocolate, and walnuts", meaning: "Intuition, clarity, and insight", note: "A", frequency: "852 Hz, 528 Hz", planet: "Moon", time: "9:00:00 PM" },
+  { name: "Solar Plexus (Manipura)", day: "Tech Tuesday", color: "#a68c3d", body: "Core and Abdominals", exercise: "Planks, Twisting, Leg Raises, Crunches", spiritual: "Confidence, power, motivation", focus: "Confidence, Power, Motivation", food: "Bananas, lemons, corn, yellow peppers, squash, ginger, turmeric, grains (rice, oats, quinoa)", meaning: "Willpower, personal strength, digestion", note: "E", frequency: "528 Hz, 528 Hz", planet: "Mars", time: "4:00:00 PM" },
+  { name: "Heart (Anahata)", day: "Web Wednesday", color: "#4d8c4d", body: "Chest, Upper Back, and Arms", exercise: "Push-Ups, Bench Press, Pull-Ups, Rows, Dumbbell Flies", spiritual: "Love, compassion, emotional healing", focus: "Love, Compassion, Healing", food: "Leafy greens (spinach, broccoli, kale), avocados, cucumber, green apples, matcha, and almonds", meaning: "Emotional balance, love, and harmony", note: "F♯", frequency: "639 Hz, 528 Hz", planet: "Mercury", time: "5:00:00 PM" },
+  { name: "Throat (Vishuddha)", day: "Theory Thursday", color: "#3f708c", body: "Shoulders, Shoulders, Neck, and Arms", exercise: "Shoulder Press, Lateral Raises, Upright Rows, Neck Stretches", spiritual: "Communication, truth, self-expression", focus: "Communication, Expression, Truth", food: "Blueberries, plums, blackberries, seaweed, herbal teas, coconut water, and honey", meaning: "Clear expression, fluidity, and speaking truth", note: "G♯", frequency: "741 Hz, 528 Hz", planet: "Jupiter", time: "7:00:00 PM" },
+  { name: "Sacral (Svadhisthana)", day: "Fractal Friday", color: "#5e4d8c", body: "Hips, Pelvis, and Lower Abs", exercise: "Hip Thrusts, Bridges, Leg Raises, Abductor/Adductor Machines", spiritual: "Creativity, sensuality, emotions", focus: "Creativity, Sensuality, Emotions", food: "Oranges, mangoes, papayas, carrots, sweet potatoes, apricots, nuts, seeds, and fatty fish", meaning: "Passion, pleasure, emotional balance", note: "D", frequency: "417 Hz, 417 Hz", planet: "Venus", time: "2:00:00 PM" },
+  { name: "Root (Muladhara)", day: "Sojourn (if you can't go, then create)", color: "#7e3e8c", body: "Legs, Feet, and Glutes", exercise: "Squats, Lunges, Deadlifts, Calf Raises", spiritual: "Grounding, stability, survival", focus: "Grounding, Survival, Stability", food: "Root vegetables (beets, carrots, potatoes), red apples, strawberries, tomatoes, red beans, protein", meaning: "Grounding, security, strength", note: "C", frequency: "396 Hz, 396 Hz", planet: "Saturn", time: "12:00:00 PM" }
 ];
 
 const planetGlyphs = {
-  Saturn: "♄", Venus: "♀", Mars: "♂", Sun: "☉",
-  Mercury: "☿", Moon: "☽", Jupiter: "♃"
+  Sun: "☉", Moon: "☽", Mars: "♂", Mercury: "☿", Jupiter: "♃", Venus: "♀", Saturn: "♄"
 };
 
 let rotation = 0;
@@ -78,8 +80,21 @@ function drawHeptagram() {
       const label = createSVGElement("text");
       label.setAttribute("x", cx + (r * 0.8) * Math.cos(labelAngle));
       label.setAttribute("y", cy + (r * 0.8) * Math.sin(labelAngle));
-      label.textContent = chakraData[i].name;
+      label.textContent = chakraData[i].name.split(" ")[0];
       label.classList.add("chakra-label");
+      svg.appendChild(label);
+    }
+  }
+
+  // Draw Days
+  if (dayToggle.checked) {
+    for (let i = 0; i < 7; i++) {
+      const angle = (i * 360 / 7 - 90 + rotation) * Math.PI / 180;
+      const label = createSVGElement("text");
+      label.setAttribute("x", cx + (r * 1.3) * Math.cos(angle));
+      label.setAttribute("y", cy + (r * 1.3) * Math.sin(angle));
+      label.textContent = chakraData[i].day.split(" ")[0];
+      label.classList.add("day-label");
       svg.appendChild(label);
     }
   }
@@ -132,6 +147,32 @@ function drawHeptagram() {
       svg.appendChild(note);
     }
   }
+
+  // Draw Food Suggestions
+  if (foodToggle.checked) {
+    for (let i = 0; i < 7; i++) {
+      const angle = (i * 360 / 7 - 90 + rotation) * Math.PI / 180;
+      const label = createSVGElement("text");
+      label.setAttribute("x", cx + (r * 1.5) * Math.cos(angle));
+      label.setAttribute("y", cy + (r * 1.5) * Math.sin(angle));
+      label.textContent = chakraData[i].food.split(",")[0]; // First food item for brevity
+      label.classList.add("food-label");
+      svg.appendChild(label);
+    }
+  }
+
+  // Draw Focus Areas
+  if (focusToggle.checked) {
+    for (let i = 0; i < 7; i++) {
+      const angle = (i * 360 / 7 - 90 + rotation) * Math.PI / 180;
+      const label = createSVGElement("text");
+      label.setAttribute("x", cx + (r * 1.7) * Math.cos(angle));
+      label.setAttribute("y", cy + (r * 1.7) * Math.sin(angle));
+      label.textContent = chakraData[i].focus.split(",")[0]; // First focus item for brevity
+      label.classList.add("focus-label");
+      svg.appendChild(label);
+    }
+  }
 }
 
 function showTooltip(e, data) {
@@ -143,9 +184,18 @@ function showTooltip(e, data) {
   }
   tooltip.innerHTML = `
     <strong>${data.name}</strong><br>
-    Planet: ${data.planet}<br>
+    Day: ${data.day}<br>
+    Color: ${data.color}<br>
+    Body: ${data.body}<br>
+    Exercise: ${data.exercise}<br>
+    Spiritual: ${data.spiritual}<br>
+    Focus: ${data.focus}<br>
+    Food: ${data.food}<br>
+    Meaning: ${data.meaning}<br>
     Note: ${data.note}<br>
-    Degree: ${data.degree.toFixed(2)}°
+    Frequency: ${data.frequency}<br>
+    Planet: ${data.planet}<br>
+    Time: ${data.time}
   `;
   tooltip.style.left = `${e.pageX + 10}px`;
   tooltip.style.top = `${e.pageY + 10}px`;
@@ -166,9 +216,12 @@ function animate() {
 }
 
 chakraToggle.addEventListener("change", drawHeptagram);
+dayToggle.addEventListener("change", drawHeptagram);
 angleToggle.addEventListener("change", drawHeptagram);
 planetToggle.addEventListener("change", drawHeptagram);
 noteToggle.addEventListener("change", drawHeptagram);
+foodToggle.addEventListener("change", drawHeptagram);
+focusToggle.addEventListener("change", drawHeptagram);
 rotateToggle.addEventListener("change", () => {
   isRotating = rotateToggle.checked;
   if (isRotating) animate();

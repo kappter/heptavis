@@ -89,7 +89,7 @@ svg {
   transition: transform 0.3s;
 }
 
-.angle-label, .chakra-label, .planet-glyph, .note-label {
+.day-label, .food-label, .focus-label, .angle-label, .chakra-label, .planet-glyph, .note-label {
   font-size: 12px;
   fill: #ccc;
   text-anchor: middle;
