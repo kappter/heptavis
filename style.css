@@ -1,25 +1,61 @@
 body {
-  font-family: sans-serif;
-  text-align: center;
   margin: 0;
-  padding: 0;
-  background: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212;
+  color: #ccc;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-header {
-  background: #222;
+
+header, footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #1e1e1e;
   color: #fff;
-  padding: 1em;
 }
+
 .controls {
-  margin: 1em 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem;
 }
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: #3a3a3a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #555;
+}
+
 #vizContainer {
-  width: 100%;
-  max-width: 500px;
-  margin: auto;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
+
 svg {
   width: 100%;
+  max-width: 500px;
   height: auto;
-  background: white;
+}
+
+chakra-colors {
+  color: #a63d40;  /* Root (reddish-brown) */
+  color: #a65f3e;  /* Sacral (burnt orange) */
+  color: #a68c3d;  /* Solar Plexus (earthy yellow) */
+  color: #4d8c4d;  /* Heart (earthy green) */
+  color: #3f708c;  /* Throat (muddy blue) */
+  color: #5e4d8c;  /* Third Eye (muted indigo) */
+  color: #7e3e8c;  /* Crown (deep violet) */
 }
