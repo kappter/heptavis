@@ -59,31 +59,19 @@
       <label><input type="checkbox" id="angleToggle"> Angles</label>
       <label><input type="checkbox" id="planetToggle"> Planets</label>
       <label><input type="checkbox" id="noteToggle"> Notes</label>
-      <label><input type="checkbox" id="maskToggle"> Highlight Today</label>
     </details>
 
     <details class="control-section">
-      <summary>Content</summary>
-      <label><input type="checkbox" id="showDay"> Day</label>
-      <label><input type="checkbox" id="showFood"> Food</label>
-      <label><input type="checkbox" id="showFocus"> Focus</label>
-      <label><input type="checkbox" id="showExercise"> Exercise</label>
-      <label><input type="checkbox" id="showBody"> Body</label>
-      <label><input type="checkbox" id="showColor"> Color</label>
-    </details>
-
-    <details class="control-section">
-      <summary>Rotation</summary>
+      <summary>Rotate</summary>
       <label>Chakras: <input type="range" id="chakraRot" min="0" max="360" value="0"></label>
       <label>Days: <input type="range" id="dayRot" min="0" max="360" value="0"></label>
       <label>Angles: <input type="range" id="angleRot" min="0" max="360" value="0"></label>
       <label>Planets: <input type="range" id="planetRot" min="0" max="360" value="0"></label>
       <label>Notes: <input type="range" id="noteRot" min="0" max="360" value="0"></label>
-      <label><input type="checkbox" id="rotateToggle"> Auto Rotate</label>
     </details>
 
-    <button id="playFrequencyBtn">Play Today’s Tone</button>
-    <button id="downloadBtn">Save as SVG</button>
+    <button id="playFrequencyBtn">Play Tone</button>
+    <button id="downloadBtn">Save SVG</button>
   </div>
 
   <div id="vizContainer">
@@ -94,6 +82,13 @@
         </clipPath>
       </defs>
     </svg>
+  </div>
+
+  <div id="infoPanel">
+    <h2>Today: Wednesday</h2>
+    <p><strong>Chakra:</strong> Heart</p>
+    <p><strong>Focus:</strong> Love</p>
+    <p><strong>Frequency:</strong> 639 Hz</p>
   </div>
 
   <footer>

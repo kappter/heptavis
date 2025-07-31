@@ -114,37 +114,30 @@ svg {
   stroke-width: 3;
 }
 
-.day-label, .food-label, .focus-label, .exercise-label, .body-label, .color-label, .angle-label, .chakra-label, .planet-glyph, .note-label {
+.day-label, .angle-label, .planet-glyph, .note-label {
   font-size: 12px;
   fill: #ccc;
   text-anchor: middle;
 }
 
-.mask-overlay {
-  fill: rgba(0, 0, 0, 0.7);
-}
-
-.current-day {
-  fill-opacity: 1;
-  stroke: #fff;
-  stroke-width: 2;
-}
-
-.active-text {
-  transform-origin: center;
-  text-anchor: middle;
-  alignment-baseline: middle;
-}
-
-.tooltip {
-  position: absolute;
+#infoPanel {
+  padding: 1rem;
   background: #2a2a2a;
-  color: #fff;
-  padding: 0.5rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  pointer-events: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  margin: 0 1rem 1rem;
+  border-radius: 8px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#infoPanel h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+#infoPanel p {
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 600px) {
@@ -172,5 +165,9 @@ svg {
 
   svg {
     max-width: 100%;
+  }
+
+  #infoPanel {
+    margin: 0 0.5rem 0.5rem;
   }
 }

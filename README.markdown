@@ -2,20 +2,19 @@
 
 [Live Demo](https://kappter.github.io/heptavis/)
 
-A simple, phone-friendly SVG tool to explore the heptagram’s geometry, chakras, and symbols.
+A simple SVG tool to explore the heptagram’s chakras and symbols.
 
 ## ✨ Features
-- 🔺 **Chakra Wheel**: Colorful wedges with details.
-- 📅 **Days**: Weekly chakra alignment.
+- 🔺 **Chakra Wheel**: Colorful wedges.
+- 📅 **Days**: Weekly alignment.
 - 📐 **Angles**: 51.43° markers.
 - 🪐 **Planets**: Astrological glyphs.
 - 🎵 **Notes**: Chakra tones.
-- 🔊 **Tone Playback**: Play today’s frequency.
-- 🖌️ **Highlight**: Focus on the current day.
-- 📝 **Custom Content**: Pick what to see (Day, Food, etc.).
-- 🔄 **Snapped Rotation**: Align layers at 51.43° intervals.
-- ⬇️ **SVG Download**: Save your design.
-- 📱 **Mobile-Friendly**: Easy to use on phones.
+- 🔊 **Tone Playback**: Play current frequency.
+- ℹ️ **Info Panel**: Shows today’s details.
+- 🔄 **Snapped Rotation**: Lock at 51.43° intervals.
+- ⬇️ **SVG Download**: Save design.
+- 📱 **Mobile-Friendly**: Easy to use.
 
 ## 🚀 Getting Started
 1. Clone the repo:
