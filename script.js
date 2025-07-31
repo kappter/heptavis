@@ -9,8 +9,10 @@ const focusToggle = document.getElementById("focusToggle");
 const exerciseToggle = document.getElementById("exerciseToggle");
 const bodyToggle = document.getElementById("bodyToggle");
 const colorToggle = document.getElementById("colorToggle");
+const maskToggle = document.getElementById("maskToggle");
 const rotateToggle = document.getElementById("rotateToggle");
 const downloadBtn = document.getElementById("downloadBtn");
+const playFrequencyBtn = document.getElementById("playFrequencyBtn");
 const chakraRot = document.getElementById("chakraRot");
 const dayRot = document.getElementById("dayRot");
 const angleRot = document.getElementById("angleRot");
@@ -40,9 +42,34 @@ let rotations = {
   chakra: 0, day: 0, angle: 0, planet: 0, note: 0, food: 0, focus: 0, exercise: 0, body: 0, color: 0
 };
 let isRotating = rotateToggle.checked;
+let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+let currentOscillator = null;
 
 function createSVGElement(tag) {
   return document.createElementNS("http://www.w3.org/2000/svg", tag);
+}
+
+function getCurrentDayChakra() {
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const now = new Date();
+  const dayName = days[now.getUTCDay()]; // Using UTC to match MDT offset
+  return chakraData.find(chakra => chakra.day.includes(dayName));
+}
+
+function playFrequency(frequency) {
+  if (currentOscillator) currentOscillator.stop();
+  currentOscillator = audioContext.createOscillator();
+  const gainNode = audioContext.createGain();
+  currentOscillator.type = "sine";
+  currentOscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+  currentOscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+  gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); // Volume at 10%
+  currentOscillator.start();
+  setTimeout(() => {
+    currentOscillator.stop();
+    currentOscillator = null;
+  }, 2000); // Play for 2 seconds
 }
 
 function drawHeptagram() {
@@ -71,10 +98,11 @@ function drawHeptagram() {
     svg.appendChild(line);
   }
 
-  // Draw Chakra Wedges with independent rotation
+  // Draw Chakra Wedges with independent rotation and masking
   if (chakraToggle.checked) {
     const gChakras = createSVGElement("g");
     gChakras.setAttribute("transform", `rotate(${rotations.chakra}, ${cx}, ${cy})`);
+    const currentDayChakra = getCurrentDayChakra();
     for (let i = 0; i < 7; i++) {
       const startAngle = (i * 360 / 7 - 90) * Math.PI / 180;
       const endAngle = ((i + 1) * 360 / 7 - 90) * Math.PI / 180;
@@ -88,6 +116,9 @@ function drawHeptagram() {
       path.setAttribute("d", d);
       path.setAttribute("fill", chakraData[i].color);
       path.classList.add("chakra-wedge");
+      if (maskToggle.checked && chakraData[i] === currentDayChakra) {
+        path.classList.add("current-day");
+      }
       path.addEventListener("mousemove", (e) => showTooltip(e, chakraData[i]));
       path.addEventListener("mouseout", hideTooltip);
       path.addEventListener("touchend", hideTooltip);
@@ -100,6 +131,13 @@ function drawHeptagram() {
       label.textContent = chakraData[i].name.split(" ")[0];
       label.classList.add("chakra-label");
       gChakras.appendChild(label);
+    }
+    if (maskToggle.checked) {
+      const mask = createSVGElement("path");
+      mask.setAttribute("d", `M ${cx} ${cy} ${basePoints.map(p => `L ${p[0]} ${p[1]}`).join(" ")} Z`);
+      mask.setAttribute("fill", "rgba(0, 0, 0, 0.7)");
+      mask.classList.add("mask-overlay");
+      gChakras.appendChild(mask);
     }
     svg.appendChild(gChakras);
   }
@@ -313,6 +351,7 @@ focusToggle.addEventListener("change", drawHeptagram);
 exerciseToggle.addEventListener("change", drawHeptagram);
 bodyToggle.addEventListener("change", drawHeptagram);
 colorToggle.addEventListener("change", drawHeptagram);
+maskToggle.addEventListener("change", drawHeptagram);
 rotateToggle.addEventListener("change", () => {
   isRotating = rotateToggle.checked;
   if (isRotating) animate();
@@ -358,6 +397,12 @@ bodyRot.addEventListener("input", () => {
 colorRot.addEventListener("input", () => {
   rotations.color = parseInt(colorRot.value);
   drawHeptagram();
+});
+
+playFrequencyBtn.addEventListener("click", () => {
+  const currentDayChakra = getCurrentDayChakra();
+  const frequency = parseInt(currentDayChakra.frequency.split(",")[0]); // Use first frequency
+  playFrequency(frequency);
 });
 
 downloadBtn.addEventListener("click", () => {

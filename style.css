@@ -113,6 +113,17 @@ svg {
   text-anchor: middle;
 }
 
+.mask-overlay {
+  fill: rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+
+.current-day {
+  fill-opacity: 1 !important;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
 .tooltip {
   position: absolute;
   background: #2a2a2a;

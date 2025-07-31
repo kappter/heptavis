@@ -16,6 +16,8 @@ An interactive, animated SVG tool for exploring the geometric, musical, and symb
 - 💪 **Exercise**: Chakra-aligned physical exercises.
 - 🦴 **Body Focus**: Areas of the body tied to each chakra.
 - 🎨 **Color**: Chakra-specific color representations.
+- 🔊 **Frequency Playback**: Play the frequency for the current day with a button.
+- 🖌️ **Masking**: Highlight the current day’s chakra with an optional mask.
 - 🔄 **Independent Rotation**: Adjust each layer's rotation (clockwise or counterclockwise) with sliders.
 - 📱 **Mobile-Friendly**: Responsive UI for phones and tablets.
 - ⬇️ **SVG Download**: Export your visualization as an SVG file.
@@ -27,7 +29,7 @@ An interactive, animated SVG tool for exploring the geometric, musical, and symb
    cd heptavis
    ```
 2. Open `index.html` in your browser or visit [https://kappter.github.io/heptavis/](https://kappter.github.io/heptavis/).
-3. Use checkboxes to toggle overlays, sliders to rotate layers, and download the SVG.
+3. Use checkboxes to toggle overlays, sliders to rotate layers, and buttons for frequency playback and SVG download.
 
 ## 📁 Project Structure
 ```
@@ -46,10 +48,9 @@ Heptavis explores the mystical power of seven:
 - A tool for artists, mystics, educators, and theorists.
 
 ## 📌 To-Do / Ideas
-- Add sound feedback for musical notes (e.g., play frequencies on hover).
+- Add frequency duration control for playback.
 - Enable angle snapping for precise rotation increments.
-- Integrate a time-of-day indicator synced with planetary times (e.g., 12:18 PM MDT, Thursday, July 31, 2025, aligns with Throat/Jupiter).
-- Add exercise overlays or a guided meditation mode.
+- Add a time-of-day overlay synced with planetary times.
 - Support PNG or animated GIF export.
 
 ## 📄 License
