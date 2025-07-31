@@ -4,11 +4,6 @@ const dayToggle = document.getElementById("dayToggle");
 const angleToggle = document.getElementById("angleToggle");
 const planetToggle = document.getElementById("planetToggle");
 const noteToggle = document.getElementById("noteToggle");
-const foodToggle = document.getElementById("foodToggle");
-const focusToggle = document.getElementById("focusToggle");
-const exerciseToggle = document.getElementById("exerciseToggle");
-const bodyToggle = document.getElementById("bodyToggle");
-const colorToggle = document.getElementById("colorToggle");
 const maskToggle = document.getElementById("maskToggle");
 const rotateToggle = document.getElementById("rotateToggle");
 const downloadBtn = document.getElementById("downloadBtn");
@@ -18,11 +13,6 @@ const dayRot = document.getElementById("dayRot");
 const angleRot = document.getElementById("angleRot");
 const planetRot = document.getElementById("planetRot");
 const noteRot = document.getElementById("noteRot");
-const foodRot = document.getElementById("foodRot");
-const focusRot = document.getElementById("focusRot");
-const exerciseRot = document.getElementById("exerciseRot");
-const bodyRot = document.getElementById("bodyRot");
-const colorRot = document.getElementById("colorRot");
 const showDay = document.getElementById("showDay");
 const showFood = document.getElementById("showFood");
 const showFocus = document.getElementById("showFocus");
@@ -31,35 +21,27 @@ const showBody = document.getElementById("showBody");
 const showColor = document.getElementById("showColor");
 
 const chakraData = [
-  { name: "Crown (Sahasrara)", day: "The Write Sunday", color: "#a63d40", body: "Whole Body Integration", exercise: "Yoga, Stretching, Breathing Exercises, Rest, Reflection", spiritual: "Spirituality, enlightenment, divine connection", focus: "Spirituality, Awareness, Unity", food: "Purple kale, figs, lavender tea, chia seeds, mushrooms, herbal infusions, and fasting-friendly foods", meaning: "Spiritual connection, enlightenment, mental clarity", note: "B", frequency: "963 Hz, 528 Hz", planet: "Sun", time: "11:00:00 PM" },
-  { name: "Third Eye (Ajna)", day: "Music Monday", color: "#a65f3e", body: "Forehead, Eyes, and Brain", exercise: "Meditation, Yoga Focus Training, Eye Exercises", spiritual: "Intuition, insight, perception", focus: "Intuition, Insight, Perception", food: "Purple grapes, eggplant, purple cabbage, blackberries, dark chocolate, and walnuts", meaning: "Intuition, clarity, and insight", note: "A", frequency: "852 Hz, 528 Hz", planet: "Moon", time: "9:00:00 PM" },
-  { name: "Solar Plexus (Manipura)", day: "Tech Tuesday", color: "#a68c3d", body: "Core and Abdominals", exercise: "Planks, Twisting, Leg Raises, Crunches", spiritual: "Confidence, power, motivation", focus: "Confidence, Power, Motivation", food: "Bananas, lemons, corn, yellow peppers, squash, ginger, turmeric, grains (rice, oats, quinoa)", meaning: "Willpower, personal strength, digestion", note: "E", frequency: "528 Hz, 528 Hz", planet: "Mars", time: "4:00:00 PM" },
-  { name: "Heart (Anahata)", day: "Web Wednesday", color: "#4d8c4d", body: "Chest, Upper Back, and Arms", exercise: "Push-Ups, Bench Press, Pull-Ups, Rows, Dumbbell Flies", spiritual: "Love, compassion, emotional healing", focus: "Love, Compassion, Healing", food: "Leafy greens (spinach, broccoli, kale), avocados, cucumber, green apples, matcha, and almonds", meaning: "Emotional balance, love, and harmony", note: "F♯", frequency: "639 Hz, 528 Hz", planet: "Mercury", time: "5:00:00 PM" },
-  { name: "Throat (Vishuddha)", day: "Theory Thursday", color: "#3f708c", body: "Shoulders, Shoulders, Neck, and Arms", exercise: "Shoulder Press, Lateral Raises, Upright Rows, Neck Stretches", spiritual: "Communication, truth, self-expression", focus: "Communication, Expression, Truth", food: "Blueberries, plums, blackberries, seaweed, herbal teas, coconut water, and honey", meaning: "Clear expression, fluidity, and speaking truth", note: "G♯", frequency: "741 Hz, 528 Hz", planet: "Jupiter", time: "7:00:00 PM" },
-  { name: "Sacral (Svadhisthana)", day: "Fractal Friday", color: "#5e4d8c", body: "Hips, Pelvis, and Lower Abs", exercise: "Hip Thrusts, Bridges, Leg Raises, Abductor/Adductor Machines", spiritual: "Creativity, sensuality, emotions", focus: "Creativity, Sensuality, Emotions", food: "Oranges, mangoes, papayas, carrots, sweet potatoes, apricots, nuts, seeds, and fatty fish", meaning: "Passion, pleasure, emotional balance", note: "D", frequency: "417 Hz, 417 Hz", planet: "Venus", time: "2:00:00 PM" },
-  { name: "Root (Muladhara)", day: "Sojourn (if you can't go, then create)", color: "#7e3e8c", body: "Legs, Feet, and Glutes", exercise: "Squats, Lunges, Deadlifts, Calf Raises", spiritual: "Grounding, stability, survival", focus: "Grounding, Survival, Stability", food: "Root vegetables (beets, carrots, potatoes), red apples, strawberries, tomatoes, red beans, protein", meaning: "Grounding, security, strength", note: "C", frequency: "396 Hz, 396 Hz", planet: "Saturn", time: "12:00:00 PM" }
+  { name: "Crown", day: "The Write Sunday", color: "#a63d40", body: "Whole Body", exercise: "Yoga", focus: "Spirituality", food: "Purple kale", note: "B", frequency: "963 Hz", planet: "Sun" },
+  { name: "Third Eye", day: "Music Monday", color: "#a65f3e", body: "Forehead", exercise: "Meditation", focus: "Intuition", food: "Purple grapes", note: "A", frequency: "852 Hz", planet: "Moon" },
+  { name: "Solar Plexus", day: "Tech Tuesday", color: "#a68c3d", body: "Core", exercise: "Planks", focus: "Confidence", food: "Bananas", note: "E", frequency: "528 Hz", planet: "Mars" },
+  { name: "Heart", day: "Web Wednesday", color: "#4d8c4d", body: "Chest", exercise: "Push-Ups", focus: "Love", food: "Leafy greens", note: "F♯", frequency: "639 Hz", planet: "Mercury" },
+  { name: "Throat", day: "Theory Thursday", color: "#3f708c", body: "Shoulders", exercise: "Shoulder Press", focus: "Communication", food: "Blueberries", note: "G♯", frequency: "741 Hz", planet: "Jupiter" },
+  { name: "Sacral", day: "Fractal Friday", color: "#5e4d8c", body: "Hips", exercise: "Hip Thrusts", focus: "Creativity", food: "Oranges", note: "D", frequency: "417 Hz", planet: "Venus" },
+  { name: "Root", day: "Sojourn", color: "#7e3e8c", body: "Legs", exercise: "Squats", focus: "Grounding", food: "Root veggies", note: "C", frequency: "396 Hz", planet: "Saturn" }
 ];
 
-const planetGlyphs = {
-  Sun: "☉", Moon: "☽", Mars: "♂", Mercury: "☿", Jupiter: "♃", Venus: "♀", Saturn: "♄"
-};
-
-let rotations = {
-  chakra: 0, day: 0, angle: 0, planet: 0, note: 0, food: 0, focus: 0, exercise: 0, body: 0, color: 0
-};
+const planetGlyphs = { Sun: "☉", Moon: "☽", Mars: "♂", Mercury: "☿", Jupiter: "♃", Venus: "♀", Saturn: "♄" };
+let rotations = { chakra: 0, day: 0, angle: 0, planet: 0, note: 0 };
 let isRotating = rotateToggle.checked;
 let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let currentOscillator = null;
 
-function createSVGElement(tag) {
-  return document.createElementNS("http://www.w3.org/2000/svg", tag);
-}
+function createSVGElement(tag) { return document.createElementNS("http://www.w3.org/2000/svg", tag); }
 
 function getCurrentDayChakra() {
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const now = new Date();
-  const dayName = days[now.getUTCDay()]; // Using UTC to match MDT offset
-  return chakraData.find(chakra => chakra.day.includes(dayName));
+  return chakraData.find(chakra => chakra.day.includes(days[now.getUTCDay()]));
 }
 
 function playFrequency(frequency) {
@@ -70,12 +52,14 @@ function playFrequency(frequency) {
   currentOscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
   currentOscillator.connect(gainNode);
   gainNode.connect(audioContext.destination);
-  gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); // Volume at 10%
+  gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
   currentOscillator.start();
-  setTimeout(() => {
-    currentOscillator.stop();
-    currentOscillator = null;
-  }, 2000); // Play for 2 seconds
+  setTimeout(() => { currentOscillator.stop(); currentOscillator = null; }, 2000);
+}
+
+function snapToAngle(value) {
+  const snapAngle = 360 / 7; // 51.428571°
+  return Math.round(value / snapAngle) * snapAngle;
 }
 
 function drawHeptagram() {
@@ -83,13 +67,11 @@ function drawHeptagram() {
   const cx = 250, cy = 250, r = 180;
   const basePoints = [];
 
-  // Calculate base points
   for (let i = 0; i < 7; i++) {
     const angle = (2 * Math.PI * i) / 7 - Math.PI / 2;
     basePoints.push([cx + r * Math.cos(angle), cy + r * Math.sin(angle)]);
   }
 
-  // Draw Heptagram (7/3 configuration)
   for (let i = 0; i < 7; i++) {
     const line = createSVGElement("line");
     const from = basePoints[i];
@@ -104,7 +86,6 @@ function drawHeptagram() {
     svg.appendChild(line);
   }
 
-  // Draw Chakra Wedges with independent rotation and masking
   if (chakraToggle.checked) {
     const gChakras = createSVGElement("g");
     gChakras.setAttribute("transform", `rotate(${rotations.chakra}, ${cx}, ${cy})`);
@@ -113,18 +94,11 @@ function drawHeptagram() {
       const startAngle = (i * 360 / 7 - 90) * Math.PI / 180;
       const endAngle = ((i + 1) * 360 / 7 - 90) * Math.PI / 180;
       const path = createSVGElement("path");
-      const d = `
-        M ${cx} ${cy}
-        L ${cx + r * Math.cos(startAngle)} ${cy + r * Math.sin(startAngle)}
-        A ${r} ${r} 0 0 1 ${cx + r * Math.cos(endAngle)} ${cy + r * Math.sin(endAngle)}
-        Z
-      `;
+      const d = `M ${cx} ${cy} L ${cx + r * Math.cos(startAngle)} ${cy + r * Math.sin(startAngle)} A ${r} ${r} 0 0 1 ${cx + r * Math.cos(endAngle)} ${cy + r * Math.sin(endAngle)} Z`;
       path.setAttribute("d", d);
       path.setAttribute("fill", chakraData[i].color);
       path.classList.add("chakra-wedge");
-      if (maskToggle.checked && chakraData[i] === currentDayChakra) {
-        path.classList.add("current-day");
-      }
+      if (maskToggle.checked && chakraData[i] === currentDayChakra) path.classList.add("current-day");
       path.addEventListener("mousemove", (e) => showTooltip(e, chakraData[i]));
       path.addEventListener("mouseout", hideTooltip);
       path.addEventListener("touchend", hideTooltip);
@@ -139,13 +113,12 @@ function drawHeptagram() {
     }
     svg.appendChild(gChakras);
 
-    // Draw text content for active wedge
     if (maskToggle.checked && currentDayChakra) {
       const activeIndex = chakraData.indexOf(currentDayChakra);
       const activeAngle = (activeIndex * 360 / 7 - 90) * Math.PI / 180;
       const gText = createSVGElement("g");
       gText.setAttribute("transform", `rotate(${rotations.chakra + activeIndex * 360 / 7}, ${cx}, ${cy})`);
-      let yOffset = -40; // Start above center for stacking
+      let yOffset = -40;
       if (showDay.checked) {
         const dayText = createSVGElement("text");
         dayText.setAttribute("x", cx);
@@ -160,7 +133,7 @@ function drawHeptagram() {
         const foodText = createSVGElement("text");
         foodText.setAttribute("x", cx);
         foodText.setAttribute("y", cy + yOffset);
-        foodText.textContent = currentDayChakra.food.split(",")[0];
+        foodText.textContent = currentDayChakra.food;
         foodText.classList.add("active-text", "food-label");
         foodText.setAttribute("transform", `rotate(${(activeAngle * 180 / Math.PI) * -1}, ${cx}, ${cy})`);
         gText.appendChild(foodText);
@@ -170,7 +143,7 @@ function drawHeptagram() {
         const focusText = createSVGElement("text");
         focusText.setAttribute("x", cx);
         focusText.setAttribute("y", cy + yOffset);
-        focusText.textContent = currentDayChakra.focus.split(",")[0];
+        focusText.textContent = currentDayChakra.focus;
         focusText.classList.add("active-text", "focus-label");
         focusText.setAttribute("transform", `rotate(${(activeAngle * 180 / Math.PI) * -1}, ${cx}, ${cy})`);
         gText.appendChild(focusText);
@@ -180,7 +153,7 @@ function drawHeptagram() {
         const exerciseText = createSVGElement("text");
         exerciseText.setAttribute("x", cx);
         exerciseText.setAttribute("y", cy + yOffset);
-        exerciseText.textContent = currentDayChakra.exercise.split(",")[0];
+        exerciseText.textContent = currentDayChakra.exercise;
         exerciseText.classList.add("active-text", "exercise-label");
         exerciseText.setAttribute("transform", `rotate(${(activeAngle * 180 / Math.PI) * -1}, ${cx}, ${cy})`);
         gText.appendChild(exerciseText);
@@ -209,7 +182,6 @@ function drawHeptagram() {
     }
   }
 
-  // Draw Days with independent rotation (radial alignment for non-active)
   if (dayToggle.checked && !maskToggle.checked) {
     const gDays = createSVGElement("g");
     gDays.setAttribute("transform", `rotate(${rotations.day}, ${cx}, ${cy})`);
@@ -226,7 +198,6 @@ function drawHeptagram() {
     svg.appendChild(gDays);
   }
 
-  // Draw Angle Markers with independent rotation
   if (angleToggle.checked) {
     const gAngles = createSVGElement("g");
     gAngles.setAttribute("transform", `rotate(${rotations.angle}, ${cx}, ${cy})`);
@@ -253,7 +224,6 @@ function drawHeptagram() {
     svg.appendChild(gAngles);
   }
 
-  // Draw Planet Glyphs with independent rotation
   if (planetToggle.checked) {
     const gPlanets = createSVGElement("g");
     gPlanets.setAttribute("transform", `rotate(${rotations.planet}, ${cx}, ${cy})`);
@@ -270,7 +240,6 @@ function drawHeptagram() {
     svg.appendChild(gPlanets);
   }
 
-  // Draw Musical Notes with independent rotation
   if (noteToggle.checked) {
     const gNotes = createSVGElement("g");
     gNotes.setAttribute("transform", `rotate(${rotations.note}, ${cx}, ${cy})`);
@@ -286,91 +255,6 @@ function drawHeptagram() {
     }
     svg.appendChild(gNotes);
   }
-
-  // Draw Food Suggestions with independent rotation
-  if (foodToggle.checked && !maskToggle.checked) {
-    const gFood = createSVGElement("g");
-    gFood.setAttribute("transform", `rotate(${rotations.food}, ${cx}, ${cy})`);
-    for (let i = 0; i < 7; i++) {
-      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
-      const label = createSVGElement("text");
-      label.setAttribute("x", cx + (r * 1.5) * Math.cos(angle));
-      label.setAttribute("y", cy + (r * 1.5) * Math.sin(angle));
-      label.textContent = chakraData[i].food.split(",")[0];
-      label.setAttribute("transform", `rotate(${(angle * 180 / Math.PI) * -1}, ${cx + (r * 1.5) * Math.cos(angle)}, ${cy + (r * 1.5) * Math.sin(angle)})`);
-      label.classList.add("food-label");
-      gFood.appendChild(label);
-    }
-    svg.appendChild(gFood);
-  }
-
-  // Draw Focus Areas with independent rotation
-  if (focusToggle.checked && !maskToggle.checked) {
-    const gFocus = createSVGElement("g");
-    gFocus.setAttribute("transform", `rotate(${rotations.focus}, ${cx}, ${cy})`);
-    for (let i = 0; i < 7; i++) {
-      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
-      const label = createSVGElement("text");
-      label.setAttribute("x", cx + (r * 1.7) * Math.cos(angle));
-      label.setAttribute("y", cy + (r * 1.7) * Math.sin(angle));
-      label.textContent = chakraData[i].focus.split(",")[0];
-      label.setAttribute("transform", `rotate(${(angle * 180 / Math.PI) * -1}, ${cx + (r * 1.7) * Math.cos(angle)}, ${cy + (r * 1.7) * Math.sin(angle)})`);
-      label.classList.add("focus-label");
-      gFocus.appendChild(label);
-    }
-    svg.appendChild(gFocus);
-  }
-
-  // Draw Exercise with independent rotation
-  if (exerciseToggle.checked && !maskToggle.checked) {
-    const gExercise = createSVGElement("g");
-    gExercise.setAttribute("transform", `rotate(${rotations.exercise}, ${cx}, ${cy})`);
-    for (let i = 0; i < 7; i++) {
-      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
-      const label = createSVGElement("text");
-      label.setAttribute("x", cx + (r * 1.9) * Math.cos(angle));
-      label.setAttribute("y", cy + (r * 1.9) * Math.sin(angle));
-      label.textContent = chakraData[i].exercise.split(",")[0];
-      label.setAttribute("transform", `rotate(${(angle * 180 / Math.PI) * -1}, ${cx + (r * 1.9) * Math.cos(angle)}, ${cy + (r * 1.9) * Math.sin(angle)})`);
-      label.classList.add("exercise-label");
-      gExercise.appendChild(label);
-    }
-    svg.appendChild(gExercise);
-  }
-
-  // Draw Body Focus with independent rotation
-  if (bodyToggle.checked && !maskToggle.checked) {
-    const gBody = createSVGElement("g");
-    gBody.setAttribute("transform", `rotate(${rotations.body}, ${cx}, ${cy})`);
-    for (let i = 0; i < 7; i++) {
-      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
-      const label = createSVGElement("text");
-      label.setAttribute("x", cx + (r * 2.1) * Math.cos(angle));
-      label.setAttribute("y", cy + (r * 2.1) * Math.sin(angle));
-      label.textContent = chakraData[i].body;
-      label.setAttribute("transform", `rotate(${(angle * 180 / Math.PI) * -1}, ${cx + (r * 2.1) * Math.cos(angle)}, ${cy + (r * 2.1) * Math.sin(angle)})`);
-      label.classList.add("body-label");
-      gBody.appendChild(label);
-    }
-    svg.appendChild(gBody);
-  }
-
-  // Draw Color with independent rotation
-  if (colorToggle.checked && !maskToggle.checked) {
-    const gColor = createSVGElement("g");
-    gColor.setAttribute("transform", `rotate(${rotations.color}, ${cx}, ${cy})`);
-    for (let i = 0; i < 7; i++) {
-      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
-      const label = createSVGElement("text");
-      label.setAttribute("x", cx + (r * 2.3) * Math.cos(angle));
-      label.setAttribute("y", cy + (r * 2.3) * Math.sin(angle));
-      label.textContent = chakraData[i].color;
-      label.setAttribute("transform", `rotate(${(angle * 180 / Math.PI) * -1}, ${cx + (r * 2.3) * Math.cos(angle)}, ${cy + (r * 2.3) * Math.sin(angle)})`);
-      label.classList.add("color-label");
-      gColor.appendChild(label);
-    }
-    svg.appendChild(gColor);
-  }
 }
 
 function showTooltip(e, data) {
@@ -380,21 +264,7 @@ function showTooltip(e, data) {
     tooltip.classList.add("tooltip");
     document.body.appendChild(tooltip);
   }
-  tooltip.innerHTML = `
-    <strong>${data.name}</strong><br>
-    Day: ${data.day}<br>
-    Color: ${data.color}<br>
-    Body: ${data.body}<br>
-    Exercise: ${data.exercise}<br>
-    Spiritual: ${data.spiritual}<br>
-    Focus: ${data.focus}<br>
-    Food: ${data.food}<br>
-    Meaning: ${data.meaning}<br>
-    Note: ${data.note}<br>
-    Frequency: ${data.frequency}<br>
-    Planet: ${data.planet}<br>
-    Time: ${data.time}
-  `;
+  tooltip.innerHTML = `<strong>${data.name}</strong><br>Day: ${data.day}<br>Focus: ${data.focus}`;
   tooltip.style.left = `${e.pageX + 10}px`;
   tooltip.style.top = `${e.pageY + 10}px`;
   tooltip.style.display = "block";
@@ -408,7 +278,7 @@ function hideTooltip() {
 function animate() {
   if (isRotating) {
     for (let key in rotations) {
-      rotations[key] += 0.5; // Slow auto-rotation
+      rotations[key] += 51.43 / 10; // Slow rotation
       if (rotations[key] >= 360) rotations[key] -= 360;
     }
     drawHeptagram();
@@ -416,22 +286,13 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-// Event Listeners for Toggles
 chakraToggle.addEventListener("change", drawHeptagram);
 dayToggle.addEventListener("change", drawHeptagram);
 angleToggle.addEventListener("change", drawHeptagram);
 planetToggle.addEventListener("change", drawHeptagram);
 noteToggle.addEventListener("change", drawHeptagram);
-foodToggle.addEventListener("change", drawHeptagram);
-focusToggle.addEventListener("change", drawHeptagram);
-exerciseToggle.addEventListener("change", drawHeptagram);
-bodyToggle.addEventListener("change", drawHeptagram);
-colorToggle.addEventListener("change", drawHeptagram);
 maskToggle.addEventListener("change", drawHeptagram);
-rotateToggle.addEventListener("change", () => {
-  isRotating = rotateToggle.checked;
-  if (isRotating) animate();
-});
+rotateToggle.addEventListener("change", () => { isRotating = rotateToggle.checked; if (isRotating) animate(); });
 showDay.addEventListener("change", drawHeptagram);
 showFood.addEventListener("change", drawHeptagram);
 showFocus.addEventListener("change", drawHeptagram);
@@ -439,52 +300,15 @@ showExercise.addEventListener("change", drawHeptagram);
 showBody.addEventListener("change", drawHeptagram);
 showColor.addEventListener("change", drawHeptagram);
 
-// Event Listeners for Rotation Sliders
-chakraRot.addEventListener("input", () => {
-  rotations.chakra = parseInt(chakraRot.value);
-  drawHeptagram();
-});
-dayRot.addEventListener("input", () => {
-  rotations.day = parseInt(dayRot.value);
-  drawHeptagram();
-});
-angleRot.addEventListener("input", () => {
-  rotations.angle = parseInt(angleRot.value);
-  drawHeptagram();
-});
-planetRot.addEventListener("input", () => {
-  rotations.planet = parseInt(planetRot.value);
-  drawHeptagram();
-});
-noteRot.addEventListener("input", () => {
-  rotations.note = parseInt(noteRot.value);
-  drawHeptagram();
-});
-foodRot.addEventListener("input", () => {
-  rotations.food = parseInt(foodRot.value);
-  drawHeptagram();
-});
-focusRot.addEventListener("input", () => {
-  rotations.focus = parseInt(focusRot.value);
-  drawHeptagram();
-});
-exerciseRot.addEventListener("input", () => {
-  rotations.exercise = parseInt(exerciseRot.value);
-  drawHeptagram();
-});
-bodyRot.addEventListener("input", () => {
-  rotations.body = parseInt(bodyRot.value);
-  drawHeptagram();
-});
-colorRot.addEventListener("input", () => {
-  rotations.color = parseInt(colorRot.value);
-  drawHeptagram();
-});
+chakraRot.addEventListener("input", () => { rotations.chakra = snapToAngle(parseInt(chakraRot.value)); drawHeptagram(); });
+dayRot.addEventListener("input", () => { rotations.day = snapToAngle(parseInt(dayRot.value)); drawHeptagram(); });
+angleRot.addEventListener("input", () => { rotations.angle = snapToAngle(parseInt(angleRot.value)); drawHeptagram(); });
+planetRot.addEventListener("input", () => { rotations.planet = snapToAngle(parseInt(planetRot.value)); drawHeptagram(); });
+noteRot.addEventListener("input", () => { rotations.note = snapToAngle(parseInt(noteRot.value)); drawHeptagram(); });
 
 playFrequencyBtn.addEventListener("click", () => {
   const currentDayChakra = getCurrentDayChakra();
-  const frequency = parseInt(currentDayChakra.frequency.split(",")[0]); // Use first frequency
-  playFrequency(frequency);
+  playFrequency(parseInt(currentDayChakra.frequency));
 });
 
 downloadBtn.addEventListener("click", () => {

@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(180deg, #121212 0%, #1e1e1e 100%);
+  background: #1e1e1e;
   color: #ccc;
   display: flex;
   flex-direction: column;
@@ -11,76 +11,78 @@ body {
 header, footer {
   text-align: center;
   padding: 1rem;
-  background-color: #1e1e1e;
+  background: #2a2a2a;
   color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 header h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
-header p {
+header p, footer p {
   margin: 0.5rem 0 0;
-  font-style: italic;
-}
-
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin: 1rem;
-  padding: 0.5rem;
-  background-color: #2a2a2a;
-  border-radius: 8px;
-}
-
-.controls label {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
   font-size: 0.9rem;
 }
 
-.layer-content-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  margin-top: 0.5rem;
+.controls {
+  padding: 1rem;
+  background: #333;
+  border-radius: 8px;
+  margin: 1rem;
 }
 
-.rotation-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  margin-top: 0.5rem;
+.control-section {
+  margin-bottom: 1rem;
 }
 
-.rotation-controls label {
+.control-section summary {
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  background: #4d8c4d;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.control-section[open] summary {
+  background: #5ea65e;
+}
+
+.control-section label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 
-input[type="range"] {
-  width: 100px;
+.control-section input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.control-section input[type="range"] {
+  width: 100%;
   accent-color: #4d8c4d;
+  padding: 0.5rem 0;
 }
 
 button {
-  padding: 0.5rem 1rem;
-  background-color: #4d8c4d;
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  background: #4d8c4d;
   color: #fff;
   border: none;
-  cursor: pointer;
   border-radius: 4px;
-  transition: background-color 0.3s;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 button:hover {
-  background-color: #5ea65e;
+  background: #5ea65e;
 }
 
 #vizContainer {
@@ -102,7 +104,6 @@ svg {
   fill-opacity: 0.6;
   stroke: #fff;
   stroke-width: 1;
-  transition: fill-opacity 0.3s;
 }
 
 .chakra-wedge:hover {
@@ -111,7 +112,6 @@ svg {
 
 .line, .angle-line {
   stroke-width: 3;
-  transition: transform 0.3s;
 }
 
 .day-label, .food-label, .focus-label, .exercise-label, .body-label, .color-label, .angle-label, .chakra-label, .planet-glyph, .note-label {
@@ -122,18 +122,16 @@ svg {
 
 .mask-overlay {
   fill: rgba(0, 0, 0, 0.7);
-  pointer-events: none;
 }
 
 .current-day {
-  fill-opacity: 1 !important;
+  fill-opacity: 1;
   stroke: #fff;
   stroke-width: 2;
 }
 
 .active-text {
   transform-origin: center;
-  transform-box: fill-box;
   text-anchor: middle;
   alignment-baseline: middle;
 }
@@ -151,21 +149,25 @@ svg {
 
 @media (max-width: 600px) {
   header h1 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .controls {
-    flex-direction: column;
-    align-items: center;
+    margin: 0.5rem;
   }
 
-  .controls label, button, .rotation-controls label, .layer-content-controls label {
-    width: 100%;
-    text-align: center;
+  .control-section summary {
+    font-size: 1rem;
   }
 
-  input[type="range"] {
-    width: 80%;
+  .control-section label {
+    font-size: 0.9rem;
+    padding: 0.3rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 0.6rem;
   }
 
   svg {
