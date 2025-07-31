@@ -2,18 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Heptagram Visualizer</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Heptagram Visualizer</h1>
-  <div id="controls">
-    <button onclick="toggleRotation()">Toggle Rotation</button>
-    <button onclick="downloadSVG()">Download SVG</button>
-  </div>
-  <svg id="heptagramCanvas" width="600" height="600" viewBox="0 0 600 600"></svg>
-  <div id="tooltip" class="tooltip"></div>
+  <header>
+    <h1>Heptagram Visualizer</h1>
+  </header>
+  <main>
+    <section class="controls">
+      <label><input type="checkbox" id="toggleChakra" checked /> Chakra Wheel</label>
+      <label><input type="checkbox" id="toggleAngles" checked /> Angle Markers</label>
+      <label><input type="checkbox" id="toggleGlyphs" checked /> Planet Glyphs</label>
+      <label><input type="checkbox" id="toggleNotes" checked /> Musical Notes</label>
+      <label><input type="checkbox" id="toggleRotate" checked /> Animate Rotation</label>
+      <button id="downloadBtn">Download SVG</button>
+    </section>
+    <div id="vizContainer">
+      <svg id="heptagramViz" viewBox="0 0 500 500"></svg>
+    </div>
+  </main>
+  <footer>
+    <p>Made for rhythm, reflection & ritual ✨</p>
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>
