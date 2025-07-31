@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #121212;
+  background: radial-gradient(circle at center, #1a1a1a, #0d0d0d);
   color: #ccc;
   display: flex;
   flex-direction: column;
@@ -13,27 +13,45 @@ header, footer {
   padding: 1rem;
   background-color: #1e1e1e;
   color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+header p {
+  margin: 0.5rem 0 0;
+  font-style: italic;
 }
 
 .controls {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.75rem;
   margin: 1rem;
+  padding: 0.5rem;
+  background: rgba(30,30,30,0.8);
+  border-radius: 8px;
 }
 
 button {
-  padding: 0.5rem 1rem;
-  background-color: #3a3a3a;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(45deg, #3a3a3a, #4a4a4a);
   color: #fff;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  touch-action: manipulation;
 }
 
-button:hover {
-  background-color: #555;
+button:hover, button.active {
+  background: linear-gradient(45deg, #555, #666);
+  transform: scale(1.05);
 }
 
 #vizContainer {
@@ -46,16 +64,46 @@ button:hover {
 
 svg {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   height: auto;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
 }
 
-chakra-colors {
-  color: #a63d40;  /* Root (reddish-brown) */
-  color: #a65f3e;  /* Sacral (burnt orange) */
-  color: #a68c3d;  /* Solar Plexus (earthy yellow) */
-  color: #4d8c4d;  /* Heart (earthy green) */
-  color: #3f708c;  /* Throat (muddy blue) */
-  color: #5e4d8c;  /* Third Eye (muted indigo) */
-  color: #7e3e8c;  /* Crown (deep violet) */
+.chakra-point {
+  transition: r 0.3s ease;
+}
+
+.chakra-point:hover {
+  r: 10;
+  filter: brightness(1.2);
+}
+
+.tooltip {
+  position: absolute;
+  background: rgba(30,30,30,0.95);
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  pointer-events: none;
+  z-index: 100;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.rotating {
+  animation: rotate 60s linear infinite;
+}
+
+.chakra-colors {
+  --root: #8b2f32;        /* Root (muted reddish-brown) */
+  --sacral: #8b4f2f;      /* Sacral (earthy burnt orange) */
+  --solar: #8b6f2f;       /* Solar Plexus (muted yellow) */
+  --heart: #3f6f3f;       /* Heart (earthy green) */
+  --throat: #315f7f;      /* Throat (muddy blue) */
+  --third-eye: #4f3f7f;   /* Third Eye (muted indigo) */
+  --crown: #6f2f7f;       /* Crown (deep violet) */
 }
