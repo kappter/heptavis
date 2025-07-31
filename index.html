@@ -42,28 +42,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Heptavis</title>
+  <title>Heptavis: The Heptagram Visualizer</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <h1>Heptavis</h1>
-    <p>Explore the Mystical Geometry of Seven</p>
+    <p>Explore the mystical geometry of seven</p>
   </header>
+
   <div class="controls">
-    <button id="toggleChakras">Chakra Wheel</button>
-    <button id="toggleAngles">Angle Markers</button>
-    <button id="togglePlanets">Planet Glyphs</button>
-    <button id="toggleNotes">Musical Notes</button>
-    <button id="toggleRotation">Animate Rotation</button>
+    <label><input type="checkbox" id="chakraToggle" checked> Chakra Wheel</label>
+    <label><input type="checkbox" id="angleToggle"> Angle Markers</label>
+    <label><input type="checkbox" id="planetToggle"> Planet Glyphs</label>
+    <label><input type="checkbox" id="noteToggle"> Musical Notes</label>
+    <label><input type="checkbox" id="rotateToggle" checked> Animate Rotation</label>
     <button id="downloadBtn">Download SVG</button>
   </div>
+
   <div id="vizContainer">
     <svg id="heptagramViz" viewBox="0 0 500 500"></svg>
   </div>
+
   <footer>
     <p>Made for rhythm, reflection & ritual ✨</p>
   </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
