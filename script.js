@@ -6,8 +6,21 @@ const planetToggle = document.getElementById("planetToggle");
 const noteToggle = document.getElementById("noteToggle");
 const foodToggle = document.getElementById("foodToggle");
 const focusToggle = document.getElementById("focusToggle");
+const exerciseToggle = document.getElementById("exerciseToggle");
+const bodyToggle = document.getElementById("bodyToggle");
+const colorToggle = document.getElementById("colorToggle");
 const rotateToggle = document.getElementById("rotateToggle");
 const downloadBtn = document.getElementById("downloadBtn");
+const chakraRot = document.getElementById("chakraRot");
+const dayRot = document.getElementById("dayRot");
+const angleRot = document.getElementById("angleRot");
+const planetRot = document.getElementById("planetRot");
+const noteRot = document.getElementById("noteRot");
+const foodRot = document.getElementById("foodRot");
+const focusRot = document.getElementById("focusRot");
+const exerciseRot = document.getElementById("exerciseRot");
+const bodyRot = document.getElementById("bodyRot");
+const colorRot = document.getElementById("colorRot");
 
 const chakraData = [
   { name: "Crown (Sahasrara)", day: "The Write Sunday", color: "#a63d40", body: "Whole Body Integration", exercise: "Yoga, Stretching, Breathing Exercises, Rest, Reflection", spiritual: "Spirituality, enlightenment, divine connection", focus: "Spirituality, Awareness, Unity", food: "Purple kale, figs, lavender tea, chia seeds, mushrooms, herbal infusions, and fasting-friendly foods", meaning: "Spiritual connection, enlightenment, mental clarity", note: "B", frequency: "963 Hz, 528 Hz", planet: "Sun", time: "11:00:00 PM" },
@@ -23,7 +36,9 @@ const planetGlyphs = {
   Sun: "☉", Moon: "☽", Mars: "♂", Mercury: "☿", Jupiter: "♃", Venus: "♀", Saturn: "♄"
 };
 
-let rotation = 0;
+let rotations = {
+  chakra: 0, day: 0, angle: 0, planet: 0, note: 0, food: 0, focus: 0, exercise: 0, body: 0, color: 0
+};
 let isRotating = rotateToggle.checked;
 
 function createSVGElement(tag) {
@@ -33,19 +48,19 @@ function createSVGElement(tag) {
 function drawHeptagram() {
   svg.innerHTML = "";
   const cx = 250, cy = 250, r = 180;
-  const points = [];
+  const basePoints = [];
 
-  // Calculate 7 points
+  // Calculate base points
   for (let i = 0; i < 7; i++) {
-    const angle = (2 * Math.PI * i) / 7 - Math.PI / 2 + rotation;
-    points.push([cx + r * Math.cos(angle), cy + r * Math.sin(angle)]);
+    const angle = (2 * Math.PI * i) / 7 - Math.PI / 2;
+    basePoints.push([cx + r * Math.cos(angle), cy + r * Math.sin(angle)]);
   }
 
   // Draw Heptagram (7/3 configuration)
   for (let i = 0; i < 7; i++) {
     const line = createSVGElement("line");
-    const from = points[i];
-    const to = points[(i + 3) % 7];
+    const from = basePoints[i];
+    const to = basePoints[(i + 3) % 7];
     line.setAttribute("x1", from[0]);
     line.setAttribute("y1", from[1]);
     line.setAttribute("x2", to[0]);
@@ -56,11 +71,13 @@ function drawHeptagram() {
     svg.appendChild(line);
   }
 
-  // Draw Chakra Wedges
+  // Draw Chakra Wedges with independent rotation
   if (chakraToggle.checked) {
+    const gChakras = createSVGElement("g");
+    gChakras.setAttribute("transform", `rotate(${rotations.chakra}, ${cx}, ${cy})`);
     for (let i = 0; i < 7; i++) {
-      const startAngle = (i * 360 / 7 - 90 + rotation) * Math.PI / 180;
-      const endAngle = ((i + 1) * 360 / 7 - 90 + rotation) * Math.PI / 180;
+      const startAngle = (i * 360 / 7 - 90) * Math.PI / 180;
+      const endAngle = ((i + 1) * 360 / 7 - 90) * Math.PI / 180;
       const path = createSVGElement("path");
       const d = `
         M ${cx} ${cy}
@@ -73,36 +90,42 @@ function drawHeptagram() {
       path.classList.add("chakra-wedge");
       path.addEventListener("mousemove", (e) => showTooltip(e, chakraData[i]));
       path.addEventListener("mouseout", hideTooltip);
-      svg.appendChild(path);
+      path.addEventListener("touchend", hideTooltip);
+      gChakras.appendChild(path);
 
-      // Chakra Labels
-      const labelAngle = (i * 360 / 7 - 90 + rotation + 360 / 14) * Math.PI / 180;
+      const labelAngle = (i * 360 / 7 - 90 + 360 / 14) * Math.PI / 180;
       const label = createSVGElement("text");
       label.setAttribute("x", cx + (r * 0.8) * Math.cos(labelAngle));
       label.setAttribute("y", cy + (r * 0.8) * Math.sin(labelAngle));
       label.textContent = chakraData[i].name.split(" ")[0];
       label.classList.add("chakra-label");
-      svg.appendChild(label);
+      gChakras.appendChild(label);
     }
+    svg.appendChild(gChakras);
   }
 
-  // Draw Days
+  // Draw Days with independent rotation
   if (dayToggle.checked) {
+    const gDays = createSVGElement("g");
+    gDays.setAttribute("transform", `rotate(${rotations.day}, ${cx}, ${cy})`);
     for (let i = 0; i < 7; i++) {
-      const angle = (i * 360 / 7 - 90 + rotation) * Math.PI / 180;
+      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
       const label = createSVGElement("text");
       label.setAttribute("x", cx + (r * 1.3) * Math.cos(angle));
       label.setAttribute("y", cy + (r * 1.3) * Math.sin(angle));
       label.textContent = chakraData[i].day.split(" ")[0];
       label.classList.add("day-label");
-      svg.appendChild(label);
+      gDays.appendChild(label);
     }
+    svg.appendChild(gDays);
   }
 
-  // Draw Angle Markers
+  // Draw Angle Markers with independent rotation
   if (angleToggle.checked) {
+    const gAngles = createSVGElement("g");
+    gAngles.setAttribute("transform", `rotate(${rotations.angle}, ${cx}, ${cy})`);
     for (let i = 0; i < 7; i++) {
-      const angle = (i * 360 / 7 - 90 + rotation) * Math.PI / 180;
+      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
       const line = createSVGElement("line");
       line.setAttribute("x1", cx);
       line.setAttribute("y1", cy);
@@ -111,67 +134,128 @@ function drawHeptagram() {
       line.setAttribute("stroke", "#666");
       line.setAttribute("stroke-width", "1");
       line.classList.add("angle-line");
-      svg.appendChild(line);
+      gAngles.appendChild(line);
 
       const label = createSVGElement("text");
       label.setAttribute("x", cx + (r * 1.1) * Math.cos(angle));
       label.setAttribute("y", cy + (r * 1.1) * Math.sin(angle));
       label.textContent = `${(i * 51.43).toFixed(1)}°`;
       label.classList.add("angle-label");
-      svg.appendChild(label);
+      gAngles.appendChild(label);
     }
+    svg.appendChild(gAngles);
   }
 
-  // Draw Planet Glyphs
+  // Draw Planet Glyphs with independent rotation
   if (planetToggle.checked) {
+    const gPlanets = createSVGElement("g");
+    gPlanets.setAttribute("transform", `rotate(${rotations.planet}, ${cx}, ${cy})`);
     for (let i = 0; i < 7; i++) {
-      const angle = (i * 360 / 7 - 90 + rotation) * Math.PI / 180;
+      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
       const glyph = createSVGElement("text");
       glyph.setAttribute("x", cx + (r * 1.2) * Math.cos(angle));
       glyph.setAttribute("y", cy + (r * 1.2) * Math.sin(angle));
       glyph.textContent = planetGlyphs[chakraData[i].planet];
       glyph.classList.add("planet-glyph");
-      svg.appendChild(glyph);
+      gPlanets.appendChild(glyph);
     }
+    svg.appendChild(gPlanets);
   }
 
-  // Draw Musical Notes
+  // Draw Musical Notes with independent rotation
   if (noteToggle.checked) {
+    const gNotes = createSVGElement("g");
+    gNotes.setAttribute("transform", `rotate(${rotations.note}, ${cx}, ${cy})`);
     for (let i = 0; i < 7; i++) {
-      const angle = (i * 360 / 7 - 90 + rotation) * Math.PI / 180;
+      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
       const note = createSVGElement("text");
       note.setAttribute("x", cx + (r * 0.6) * Math.cos(angle));
       note.setAttribute("y", cy + (r * 0.6) * Math.sin(angle));
       note.textContent = chakraData[i].note;
       note.classList.add("note-label");
-      svg.appendChild(note);
+      gNotes.appendChild(note);
     }
+    svg.appendChild(gNotes);
   }
 
-  // Draw Food Suggestions
+  // Draw Food Suggestions with independent rotation
   if (foodToggle.checked) {
+    const gFood = createSVGElement("g");
+    gFood.setAttribute("transform", `rotate(${rotations.food}, ${cx}, ${cy})`);
     for (let i = 0; i < 7; i++) {
-      const angle = (i * 360 / 7 - 90 + rotation) * Math.PI / 180;
+      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
       const label = createSVGElement("text");
       label.setAttribute("x", cx + (r * 1.5) * Math.cos(angle));
       label.setAttribute("y", cy + (r * 1.5) * Math.sin(angle));
       label.textContent = chakraData[i].food.split(",")[0]; // First food item for brevity
       label.classList.add("food-label");
-      svg.appendChild(label);
+      gFood.appendChild(label);
     }
+    svg.appendChild(gFood);
   }
 
-  // Draw Focus Areas
+  // Draw Focus Areas with independent rotation
   if (focusToggle.checked) {
+    const gFocus = createSVGElement("g");
+    gFocus.setAttribute("transform", `rotate(${rotations.focus}, ${cx}, ${cy})`);
     for (let i = 0; i < 7; i++) {
-      const angle = (i * 360 / 7 - 90 + rotation) * Math.PI / 180;
+      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
       const label = createSVGElement("text");
       label.setAttribute("x", cx + (r * 1.7) * Math.cos(angle));
       label.setAttribute("y", cy + (r * 1.7) * Math.sin(angle));
       label.textContent = chakraData[i].focus.split(",")[0]; // First focus item for brevity
       label.classList.add("focus-label");
-      svg.appendChild(label);
+      gFocus.appendChild(label);
     }
+    svg.appendChild(gFocus);
+  }
+
+  // Draw Exercise with independent rotation
+  if (exerciseToggle.checked) {
+    const gExercise = createSVGElement("g");
+    gExercise.setAttribute("transform", `rotate(${rotations.exercise}, ${cx}, ${cy})`);
+    for (let i = 0; i < 7; i++) {
+      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
+      const label = createSVGElement("text");
+      label.setAttribute("x", cx + (r * 1.9) * Math.cos(angle));
+      label.setAttribute("y", cy + (r * 1.9) * Math.sin(angle));
+      label.textContent = chakraData[i].exercise.split(",")[0]; // First exercise for brevity
+      label.classList.add("exercise-label");
+      gExercise.appendChild(label);
+    }
+    svg.appendChild(gExercise);
+  }
+
+  // Draw Body Focus with independent rotation
+  if (bodyToggle.checked) {
+    const gBody = createSVGElement("g");
+    gBody.setAttribute("transform", `rotate(${rotations.body}, ${cx}, ${cy})`);
+    for (let i = 0; i < 7; i++) {
+      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
+      const label = createSVGElement("text");
+      label.setAttribute("x", cx + (r * 2.1) * Math.cos(angle));
+      label.setAttribute("y", cy + (r * 2.1) * Math.sin(angle));
+      label.textContent = chakraData[i].body;
+      label.classList.add("body-label");
+      gBody.appendChild(label);
+    }
+    svg.appendChild(gBody);
+  }
+
+  // Draw Color with independent rotation
+  if (colorToggle.checked) {
+    const gColor = createSVGElement("g");
+    gColor.setAttribute("transform", `rotate(${rotations.color}, ${cx}, ${cy})`);
+    for (let i = 0; i < 7; i++) {
+      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
+      const label = createSVGElement("text");
+      label.setAttribute("x", cx + (r * 2.3) * Math.cos(angle));
+      label.setAttribute("y", cy + (r * 2.3) * Math.sin(angle));
+      label.textContent = chakraData[i].color;
+      label.classList.add("color-label");
+      gColor.appendChild(label);
+    }
+    svg.appendChild(gColor);
   }
 }
 
@@ -209,12 +293,16 @@ function hideTooltip() {
 
 function animate() {
   if (isRotating) {
-    rotation += 0.005;
+    for (let key in rotations) {
+      rotations[key] += 0.5; // Slow auto-rotation
+      if (rotations[key] >= 360) rotations[key] -= 360;
+    }
     drawHeptagram();
   }
   requestAnimationFrame(animate);
 }
 
+// Event Listeners for Toggles
 chakraToggle.addEventListener("change", drawHeptagram);
 dayToggle.addEventListener("change", drawHeptagram);
 angleToggle.addEventListener("change", drawHeptagram);
@@ -222,9 +310,54 @@ planetToggle.addEventListener("change", drawHeptagram);
 noteToggle.addEventListener("change", drawHeptagram);
 foodToggle.addEventListener("change", drawHeptagram);
 focusToggle.addEventListener("change", drawHeptagram);
+exerciseToggle.addEventListener("change", drawHeptagram);
+bodyToggle.addEventListener("change", drawHeptagram);
+colorToggle.addEventListener("change", drawHeptagram);
 rotateToggle.addEventListener("change", () => {
   isRotating = rotateToggle.checked;
   if (isRotating) animate();
+});
+
+// Event Listeners for Rotation Sliders
+chakraRot.addEventListener("input", () => {
+  rotations.chakra = parseInt(chakraRot.value);
+  drawHeptagram();
+});
+dayRot.addEventListener("input", () => {
+  rotations.day = parseInt(dayRot.value);
+  drawHeptagram();
+});
+angleRot.addEventListener("input", () => {
+  rotations.angle = parseInt(angleRot.value);
+  drawHeptagram();
+});
+planetRot.addEventListener("input", () => {
+  rotations.planet = parseInt(planetRot.value);
+  drawHeptagram();
+});
+noteRot.addEventListener("input", () => {
+  rotations.note = parseInt(noteRot.value);
+  drawHeptagram();
+});
+foodRot.addEventListener("input", () => {
+  rotations.food = parseInt(foodRot.value);
+  drawHeptagram();
+});
+focusRot.addEventListener("input", () => {
+  rotations.focus = parseInt(focusRot.value);
+  drawHeptagram();
+});
+exerciseRot.addEventListener("input", () => {
+  rotations.exercise = parseInt(exerciseRot.value);
+  drawHeptagram();
+});
+bodyRot.addEventListener("input", () => {
+  rotations.body = parseInt(bodyRot.value);
+  drawHeptagram();
+});
+colorRot.addEventListener("input", () => {
+  rotations.color = parseInt(colorRot.value);
+  drawHeptagram();
 });
 
 downloadBtn.addEventListener("click", () => {
@@ -238,4 +371,4 @@ downloadBtn.addEventListener("click", () => {
 });
 
 drawHeptagram();
-animate();
+if (isRotating) animate();

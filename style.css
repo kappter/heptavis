@@ -44,6 +44,24 @@ header p {
   font-size: 0.9rem;
 }
 
+.rotation-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.rotation-controls label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+input[type="range"] {
+  width: 100px;
+  accent-color: #4d8c4d;
+}
+
 button {
   padding: 0.5rem 1rem;
   background-color: #4d8c4d;
@@ -89,7 +107,7 @@ svg {
   transition: transform 0.3s;
 }
 
-.day-label, .food-label, .focus-label, .angle-label, .chakra-label, .planet-glyph, .note-label {
+.day-label, .food-label, .focus-label, .exercise-label, .body-label, .color-label, .angle-label, .chakra-label, .planet-glyph, .note-label {
   font-size: 12px;
   fill: #ccc;
   text-anchor: middle;
@@ -116,9 +134,13 @@ svg {
     align-items: center;
   }
 
-  .controls label, button {
+  .controls label, button, .rotation-controls label {
     width: 100%;
     text-align: center;
+  }
+
+  input[type="range"] {
+    width: 80%;
   }
 
   svg {

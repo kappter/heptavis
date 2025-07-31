@@ -53,13 +53,28 @@
 
   <div class="controls">
     <label><input type="checkbox" id="chakraToggle" checked> Chakra Wheel</label>
-    <label><input type="checkbox" id="dayToggle"> Days</label>
+    <label><input type="checkbox" id="dayToggle"> Day of Week</label>
     <label><input type="checkbox" id="angleToggle"> Angle Markers</label>
     <label><input type="checkbox" id="planetToggle"> Planet Glyphs</label>
     <label><input type="checkbox" id="noteToggle"> Musical Notes</label>
-    <label><input type="checkbox" id="foodToggle"> Food Suggestions</label>
-    <label><input type="checkbox" id="focusToggle"> Focus Areas</label>
-    <label><input type="checkbox" id="rotateToggle" checked> Animate Rotation</label>
+    <label><input type="checkbox" id="foodToggle"> Foods</label>
+    <label><input type="checkbox" id="focusToggle"> Focus</label>
+    <label><input type="checkbox" id="exerciseToggle"> Exercise</label>
+    <label><input type="checkbox" id="bodyToggle"> Body Focus</label>
+    <label><input type="checkbox" id="colorToggle"> Color</label>
+    <label><input type="checkbox" id="rotateToggle"> Auto Rotate All</label>
+    <div class="rotation-controls">
+      <label>Chakra Rot: <input type="range" id="chakraRot" min="-360" max="360" value="0"></label>
+      <label>Day Rot: <input type="range" id="dayRot" min="-360" max="360" value="0"></label>
+      <label>Angles Rot: <input type="range" id="angleRot" min="-360" max="360" value="0"></label>
+      <label>Planets Rot: <input type="range" id="planetRot" min="-360" max="360" value="0"></label>
+      <label>Notes Rot: <input type="range" id="noteRot" min="-360" max="360" value="0"></label>
+      <label>Food Rot: <input type="range" id="foodRot" min="-360" max="360" value="0"></label>
+      <label>Focus Rot: <input type="range" id="focusRot" min="-360" max="360" value="0"></label>
+      <label>Exercise Rot: <input type="range" id="exerciseRot" min="-360" max="360" value="0"></label>
+      <label>Body Rot: <input type="range" id="bodyRot" min="-360" max="360" value="0"></label>
+      <label>Color Rot: <input type="range" id="colorRot" min="-360" max="360" value="0"></label>
+    </div>
     <button id="downloadBtn">Download SVG</button>
   </div>
 
