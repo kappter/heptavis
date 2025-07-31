@@ -18,7 +18,8 @@ An interactive, animated SVG tool for exploring the geometric, musical, and symb
 - 🎨 **Color**: Chakra-specific color representations.
 - 🔊 **Frequency Playback**: Play the frequency for the current day with a button.
 - 🖌️ **Masking**: Highlight the current day’s chakra with an optional mask.
-- 🔄 **Independent Rotation**: Adjust each layer's rotation (clockwise or counterclockwise) with sliders.
+- 📝 **Custom Text Display**: Select which data (Day, Food, etc.) to show line-by-line in the active section.
+- 🔄 **Independent Rotation**: Adjust each layer's rotation with improved text orientation.
 - 📱 **Mobile-Friendly**: Responsive UI for phones and tablets.
 - ⬇️ **SVG Download**: Export your visualization as an SVG file.
 

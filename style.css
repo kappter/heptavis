@@ -44,6 +44,13 @@ header p {
   font-size: 0.9rem;
 }
 
+.layer-content-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
 .rotation-controls {
   display: flex;
   flex-direction: column;
@@ -124,6 +131,13 @@ svg {
   stroke-width: 2;
 }
 
+.active-text {
+  transform-origin: center;
+  transform-box: fill-box;
+  text-anchor: middle;
+  alignment-baseline: middle;
+}
+
 .tooltip {
   position: absolute;
   background: #2a2a2a;
@@ -145,7 +159,7 @@ svg {
     align-items: center;
   }
 
-  .controls label, button, .rotation-controls label {
+  .controls label, button, .rotation-controls label, .layer-content-controls label {
     width: 100%;
     text-align: center;
   }
