@@ -114,15 +114,17 @@ svg {
   stroke-width: 3;
 }
 
-.day-label, .chakra-label, .note-label, .focus-label, .frequency-label {
-  font-size: 10px;
+.day-label, .angle-label, .planet-glyph, .note-label {
+  font-size: 12px;
+  fill: #ccc;
+  text-anchor: middle;
+}
+
+.center-info {
+  font-size: 14px;
   fill: #fff;
   text-anchor: middle;
   alignment-baseline: middle;
-}
-
-.mask-overlay {
-  fill: rgba(0, 0, 0, 0.8);
 }
 
 #infoPanel {
