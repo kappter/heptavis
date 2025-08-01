@@ -14,13 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const infoPanel = document.getElementById("infoPanel");
 
   const chakraData = [
-    { name: "Crown", day: "Sunday", color: "#a63d40", focus: "Spirituality", frequency: "963", note: "B", planet: "Sun" },
-    { name: "Third Eye", day: "Monday", color: "#a65f3e", focus: "Intuition", frequency: "852", note: "A", planet: "Moon" },
-    { name: "Solar Plexus", day: "Tuesday", color: "#a68c3d", focus: "Confidence", frequency: "528", note: "E", planet: "Mars" },
-    { name: "Heart", day: "Wednesday", color: "#4d8c4d", focus: "Love", frequency: "639", note: "F♯", planet: "Mercury" },
-    { name: "Throat", day: "Thursday", color: "#3f708c", focus: "Communication", frequency: "741", note: "G♯", planet: "Jupiter" },
-    { name: "Sacral", day: "Friday", color: "#5e4d8c", focus: "Creativity", frequency: "417", note: "D", planet: "Venus" },
-    { name: "Root", day: "Saturday", color: "#7e3e8c", focus: "Grounding", frequency: "396", note: "C", planet: "Saturn" }
+    { name: "Crown", day: "Sunday", color: "#a63d40", focus: "Spirituality", frequency: "493.88", note: "B", planet: "Sun" },
+    { name: "Third Eye", day: "Monday", color: "#a65f3e", focus: "Intuition", frequency: "440.00", note: "A", planet: "Moon" },
+    { name: "Solar Plexus", day: "Tuesday", color: "#a68c3d", focus: "Confidence", frequency: "329.63", note: "E", planet: "Mars" },
+    { name: "Heart", day: "Wednesday", color: "#4d8c4d", focus: "Love", frequency: "369.99", note: "F♯", planet: "Mercury" },
+    { name: "Throat", day: "Thursday", color: "#3f708c", focus: "Communication", frequency: "415.30", note: "G♯", planet: "Jupiter" },
+    { name: "Sacral", day: "Friday", color: "#5e4d8c", focus: "Creativity", frequency: "293.66", note: "D", planet: "Venus" },
+    { name: "Root", day: "Saturday", color: "#7e3e8c", focus: "Grounding", frequency: "261.63", note: "C", planet: "Saturn" }
   ];
 
   let customMapping = {
