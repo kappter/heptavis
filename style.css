@@ -30,10 +30,13 @@ header p, footer p {
   background: #333;
   border-radius: 8px;
   margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.control-section {
-  margin-bottom: 1rem;
+.control-section, .day-controls, .rotation-control {
+  margin-bottom: 0.5rem;
 }
 
 .control-section summary {
@@ -49,7 +52,7 @@ header p, footer p {
   background: #5ea65e;
 }
 
-.control-section label {
+.control-section label, .day-controls button, .day-controls select {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -57,22 +60,45 @@ header p, footer p {
   font-size: 1rem;
 }
 
-.control-section input[type="checkbox"] {
+.control-section input[type="radio"] {
   width: 1.2rem;
   height: 1.2rem;
 }
 
-.control-section input[type="range"] {
+.day-controls {
+  justify-content: space-between;
+}
+
+.day-controls button {
+  background: #4d8c4d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.day-controls button:hover {
+  background: #5ea65e;
+}
+
+.day-controls select {
+  padding: 0.5rem;
+  background: #444;
+  color: #ccc;
+  border: none;
+  border-radius: 4px;
+}
+
+.rotation-control input[type="range"] {
   width: 100%;
   accent-color: #4d8c4d;
   padding: 0.5rem 0;
 }
 
 button {
-  display: block;
   width: 100%;
   padding: 0.8rem;
-  margin: 0.5rem 0;
   background: #4d8c4d;
   color: #fff;
   border: none;
@@ -106,18 +132,12 @@ svg {
   stroke-width: 1;
 }
 
-.chakra-wedge:hover {
-  fill-opacity: 0.9;
+.chakra-wedge.highlight {
+  fill-opacity: 1;
 }
 
 .line, .angle-line {
   stroke-width: 3;
-}
-
-.day-label, .angle-label, .planet-glyph, .note-label {
-  font-size: 12px;
-  fill: #ccc;
-  text-anchor: middle;
 }
 
 .center-info {
@@ -125,26 +145,6 @@ svg {
   fill: #fff;
   text-anchor: middle;
   alignment-baseline: middle;
-}
-
-#infoPanel {
-  padding: 1rem;
-  background: #2a2a2a;
-  margin: 0 1rem 1rem;
-  border-radius: 8px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#infoPanel h2 {
-  margin: 0 0 0.5rem;
-  font-size: 1.2rem;
-}
-
-#infoPanel p {
-  margin: 0.3rem 0;
-  font-size: 0.9rem;
 }
 
 @media (max-width: 600px) {
@@ -160,7 +160,7 @@ svg {
     font-size: 1rem;
   }
 
-  .control-section label {
+  .control-section label, .day-controls button, .day-controls select {
     font-size: 0.9rem;
     padding: 0.3rem;
   }
@@ -172,9 +172,5 @@ svg {
 
   svg {
     max-width: 100%;
-  }
-
-  #infoPanel {
-    margin: 0 0.5rem 0.5rem;
   }
 }

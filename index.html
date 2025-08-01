@@ -54,43 +54,44 @@
 
   <div class="controls">
     <details class="control-section">
-      <summary>Layers</summary>
-      <label><input type="checkbox" id="chakraToggle" checked> Chakras</label>
-      <label><input type="checkbox" id="dayToggle"> Days</label>
-      <label><input type="checkbox" id="angleToggle"> Angles</label>
-      <label><input type="checkbox" id="planetToggle"> Planets</label>
-      <label><input type="checkbox" id="noteToggle"> Notes</label>
+      <summary>Select Layer</summary>
+      <label><input type="radio" name="layer" id="chakraLayer" value="chakra" checked> Chakras</label>
+      <label><input type="radio" name="layer" id="dayLayer" value="day"> Days</label>
+      <label><input type="radio" name="layer" id="angleLayer" value="angle"> Angles</label>
+      <label><input type="radio" name="layer" id="planetLayer" value="planet"> Planets</label>
+      <label><input type="radio" name="layer" id="noteLayer" value="note"> Notes</label>
     </details>
 
-    <details class="control-section">
-      <summary>Rotate</summary>
-      <label>Chakras: <input type="range" id="chakraRot" min="0" max="360" value="0"></label>
-      <label>Days: <input type="range" id="dayRot" min="0" max="360" value="0"></label>
-      <label>Angles: <input type="range" id="angleRot" min="0" max="360" value="0"></label>
-      <label>Planets: <input type="range" id="planetRot" min="0" max="360" value="0"></label>
-      <label>Notes: <input type="range" id="noteRot" min="0" max="360" value="0"></label>
-      <label><input type="checkbox" id="rotateToggle"> Auto Rotate</label>
-    </details>
+    <div class="day-controls">
+      <button id="prevDay">← Prev Day</button>
+      <select id="daySelect">
+        <option value="0">Sunday</option>
+        <option value="1">Monday</option>
+        <option value="2">Tuesday</option>
+        <option value="3">Wednesday</option>
+        <option value="4">Thursday</option>
+        <option value="5" selected>Friday</option>
+        <option value="6">Saturday</option>
+      </select>
+      <button id="nextDay">Next Day →</button>
+    </div>
+
+    <div class="rotation-control">
+      <label>Rotate: <input type="range" id="rotation" min="0" max="360" value="0"></label>
+    </div>
 
     <button id="playFrequencyBtn">Play Tone</button>
     <button id="downloadBtn">Save SVG</button>
   </div>
 
   <div id="vizContainer">
-    <svg id="heptagramViz" viewBox="0 0 500 500" clip-path="url(#clipPath)">
+    <svg id="heptagramViz" viewBox="0 0 500 500">
       <defs>
-        <clipPath id="clipPath">
-          <rect x="0" y="0" width="500" height="500"/>
-        </clipPath>
+        <mask id="highlightMask">
+          <rect x="0" y="0" width="500" height="500" fill="white"/>
+        </mask>
       </defs>
     </svg>
-  </div>
-
-  <div id="infoPanel">
-    <h2>Today: Friday</h2>
-    <p><strong>Chakra:</strong> Sacral</p>
-    <p><strong>Focus:</strong> Creativity</p>
-    <p><strong>Frequency:</strong> 417 Hz</p>
   </div>
 
   <footer>
