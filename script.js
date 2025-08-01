@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const chakraData = [
     { name: "Crown", day: "Sunday", color: "#a63d40", focus: "Spirituality", frequency: "493.88", note: "B", planet: "Sun", food: "Coconut", element: "Thought", crystal: "Clear Quartz" },
-    { name: "Third Eye", day: "Monday", color: "#a65f3e", focus: "Intuition", frequency: "440.00", note: "A", planet: "Moon", food: "Grapes", element: "Light", crystal: "Amethyst" },
-    { name: "Solar Plexus", day: "Tuesday", color: "#a68c3d", focus: "Confidence", frequency: "329.63", note: "E", planet: "Mars", food: "Bananas", element: "Fire", crystal: "Citrine" },
-    { name: "Heart", day: "Wednesday", color: "#4d8c4d", focus: "Love", frequency: "369.99", note: "F♯", planet: "Mercury", food: "Spinach", element: "Air", crystal: "Rose Quartz" },
-    { name: "Throat", day: "Thursday", color: "#3f708c", focus: "Communication", frequency: "415.30", note: "G♯", planet: "Jupiter", food: "Blueberries", element: "Sound", crystal: "Aquamarine" },
-    { name: "Sacral", day: "Friday", color: "#5e4d8c", focus: "Creativity", frequency: "293.66", note: "D", planet: "Venus", food: "Oranges", element: "Water", crystal: "Carnelian" },
+    { name: "Third Eye", day: "Monday", color: "#4b0082", focus: "Intuition", frequency: "440.00", note: "A", planet: "Moon", food: "Grapes", element: "Light", crystal: "Amethyst" },
+    { name: "Solar Plexus", day: "Tuesday", color: "#ffff00", focus: "Confidence", frequency: "329.63", note: "E", planet: "Mars", food: "Bananas", element: "Fire", crystal: "Citrine" },
+    { name: "Heart", day: "Wednesday", color: "#008000", focus: "Love", frequency: "369.99", note: "F♯", planet: "Mercury", food: "Spinach", element: "Air", crystal: "Rose Quartz" },
+    { name: "Throat", day: "Thursday", color: "#0000ff", focus: "Communication", frequency: "415.30", note: "G♯", planet: "Jupiter", food: "Blueberries", element: "Sound", crystal: "Aquamarine" },
+    { name: "Sacral", day: "Friday", color: "#ffa500", focus: "Creativity", frequency: "293.66", note: "D", planet: "Venus", food: "Oranges", element: "Water", crystal: "Carnelian" },
     { name: "Root", day: "Saturday", color: "#ff0000", focus: "Grounding", frequency: "261.63", note: "C", planet: "Saturn", food: "Potatoes", element: "Earth", crystal: "Red Jasper" }
   ];
 
@@ -132,9 +132,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const path = createSVGElement("path");
       const d = `M ${cx} ${cy} L ${cx + r * Math.cos(startAngle)} ${cy + r * Math.sin(startAngle)} A ${r} ${r} 0 0 1 ${cx + r * Math.cos(endAngle)} ${cy + r * Math.sin(endAngle)} Z`;
       path.setAttribute("d", d);
-      path.setAttribute("fill", chakraData[customMapping[selectedLayer][customMapping[selectedLayer][i] % 7]].color);
+      path.setAttribute("fill", chakraData[customMapping[selectedLayer][i] % 7].color);
       path.classList.add("chakra-wedge");
-      if (i === currentDayIndex) path.classList.add("highlight");
+      if (i === currentDayIndex) {
+        path.setAttribute("fill", chakraData[customMapping["chakra"][currentDayIndex]].color); // Highlight with chakra color
+        path.classList.add("highlight");
+      }
       gWedges.appendChild(path);
     }
     svg.appendChild(gWedges);
