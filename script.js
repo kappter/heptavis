@@ -5,22 +5,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const angleLayer = document.getElementById("angleLayer");
   const planetLayer = document.getElementById("planetLayer");
   const noteLayer = document.getElementById("noteLayer");
+  const foodLayer = document.getElementById("foodLayer");
+  const elementLayer = document.getElementById("elementLayer");
+  const crystalLayer = document.getElementById("crystalLayer");
   const prevDay = document.getElementById("prevDay");
   const daySelect = document.getElementById("daySelect");
   const nextDay = document.getElementById("nextDay");
+  const cycleMapping = document.getElementById("cycleMapping");
   const rotation = document.getElementById("rotation");
   const playFrequencyBtn = document.getElementById("playFrequencyBtn");
   const downloadBtn = document.getElementById("downloadBtn");
   const infoPanel = document.getElementById("infoPanel");
 
   const chakraData = [
-    { name: "Crown", day: "Sunday", color: "#a63d40", focus: "Spirituality", frequency: "493.88", note: "B", planet: "Sun" },
-    { name: "Third Eye", day: "Monday", color: "#a65f3e", focus: "Intuition", frequency: "440.00", note: "A", planet: "Moon" },
-    { name: "Solar Plexus", day: "Tuesday", color: "#a68c3d", focus: "Confidence", frequency: "329.63", note: "E", planet: "Mars" },
-    { name: "Heart", day: "Wednesday", color: "#4d8c4d", focus: "Love", frequency: "369.99", note: "F♯", planet: "Mercury" },
-    { name: "Throat", day: "Thursday", color: "#3f708c", focus: "Communication", frequency: "415.30", note: "G♯", planet: "Jupiter" },
-    { name: "Sacral", day: "Friday", color: "#5e4d8c", focus: "Creativity", frequency: "293.66", note: "D", planet: "Venus" },
-    { name: "Root", day: "Saturday", color: "#7e3e8c", focus: "Grounding", frequency: "261.63", note: "C", planet: "Saturn" }
+    { name: "Crown", day: "Sunday", color: "#a63d40", focus: "Spirituality", frequency: "493.88", note: "B", planet: "Sun", food: "Coconut", element: "Thought", crystal: "Clear Quartz" },
+    { name: "Third Eye", day: "Monday", color: "#a65f3e", focus: "Intuition", frequency: "440.00", note: "A", planet: "Moon", food: "Grapes", element: "Light", crystal: "Amethyst" },
+    { name: "Solar Plexus", day: "Tuesday", color: "#a68c3d", focus: "Confidence", frequency: "329.63", note: "E", planet: "Mars", food: "Bananas", element: "Fire", crystal: "Citrine" },
+    { name: "Heart", day: "Wednesday", color: "#4d8c4d", focus: "Love", frequency: "369.99", note: "F♯", planet: "Mercury", food: "Spinach", element: "Air", crystal: "Rose Quartz" },
+    { name: "Throat", day: "Thursday", color: "#3f708c", focus: "Communication", frequency: "415.30", note: "G♯", planet: "Jupiter", food: "Blueberries", element: "Sound", crystal: "Aquamarine" },
+    { name: "Sacral", day: "Friday", color: "#5e4d8c", focus: "Creativity", frequency: "293.66", note: "D", planet: "Venus", food: "Oranges", element: "Water", crystal: "Carnelian" },
+    { name: "Root", day: "Saturday", color: "#7e3e8c", focus: "Grounding", frequency: "261.63", note: "C", planet: "Saturn", food: "Potatoes", element: "Earth", crystal: "Red Jasper" }
   ];
 
   let customMapping = {
@@ -28,7 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
     day: [0, 1, 2, 3, 4, 5, 6],
     angle: [0, 1, 2, 3, 4, 5, 6],
     planet: [0, 1, 2, 3, 4, 5, 6],
-    note: [0, 1, 2, 3, 4, 5, 6]
+    note: [0, 1, 2, 3, 4, 5, 6],
+    food: [0, 1, 2, 3, 4, 5, 6],
+    element: [0, 1, 2, 3, 4, 5, 6],
+    crystal: [0, 1, 2, 3, 4, 5, 6]
   };
   let selectedLayer = "chakra";
   let currentDayIndex = 5; // Friday, August 01, 2025
@@ -57,12 +64,15 @@ document.addEventListener("DOMContentLoaded", () => {
       `Note: ${data.note}`,
       `Focus: ${data.focus}`,
       `Freq: ${data.frequency} Hz`,
-      `Planet: ${planetGlyphs[data.planet]}`
+      `Planet: ${planetGlyphs[data.planet]}`,
+      `Food: ${data.food}`,
+      `Element: ${data.element}`,
+      `Crystal: ${data.crystal}`
     ];
     lines.forEach((line, i) => {
       const text = createSVGElement("text");
       text.setAttribute("x", cx);
-      text.setAttribute("y", cy - 50 + i * 20);
+      text.setAttribute("y", cy - 80 + i * 20);
       text.textContent = line;
       text.classList.add("center-info");
       gCenter.appendChild(text);
@@ -71,6 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateInfoPanel() {
+    if (!infoPanel) {
+      console.warn("infoPanel element not found in DOM");
+      return;
+    }
     const data = chakraData[customMapping[selectedLayer][currentDayIndex]];
     infoPanel.innerHTML = `
       <h2>Today: ${data.day}</h2>
@@ -78,6 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <p><strong>Focus:</strong> ${data.focus}</p>
       <p><strong>Frequency:</strong> ${data.frequency} Hz</p>
       <p><strong>Planet:</strong> ${planetGlyphs[data.planet]}</p>
+      <p><strong>Food:</strong> ${data.food}</p>
+      <p><strong>Element:</strong> ${data.element}</p>
+      <p><strong>Crystal:</strong> ${data.crystal}</p>
     `;
   }
 
@@ -148,6 +165,9 @@ document.addEventListener("DOMContentLoaded", () => {
   angleLayer.addEventListener("change", () => { selectedLayer = "angle"; drawHeptagram(); });
   planetLayer.addEventListener("change", () => { selectedLayer = "planet"; drawHeptagram(); });
   noteLayer.addEventListener("change", () => { selectedLayer = "note"; drawHeptagram(); });
+  foodLayer.addEventListener("change", () => { selectedLayer = "food"; drawHeptagram(); });
+  elementLayer.addEventListener("change", () => { selectedLayer = "element"; drawHeptagram(); });
+  crystalLayer.addEventListener("change", () => { selectedLayer = "crystal"; drawHeptagram(); });
 
   prevDay.addEventListener("click", () => {
     currentDayIndex = (currentDayIndex - 1 + 7) % 7;
@@ -163,6 +183,13 @@ document.addEventListener("DOMContentLoaded", () => {
   nextDay.addEventListener("click", () => {
     currentDayIndex = (currentDayIndex + 1) % 7;
     daySelect.value = currentDayIndex;
+    drawHeptagram();
+  });
+
+  cycleMapping.addEventListener("click", () => {
+    for (let layer in customMapping) {
+      customMapping[layer] = customMapping[layer].map(i => (i + 1) % 7);
+    }
     drawHeptagram();
   });
 

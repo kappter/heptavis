@@ -44,7 +44,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Heptavis: The Heptagram Visualizer</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- Add a 16x16 pixel favicon.ico file here if desired -->
 </head>
 <body>
   <header>
@@ -60,6 +60,9 @@
       <label><input type="radio" name="layer" id="angleLayer" value="angle"> Angles</label>
       <label><input type="radio" name="layer" id="planetLayer" value="planet"> Planets</label>
       <label><input type="radio" name="layer" id="noteLayer" value="note"> Notes</label>
+      <label><input type="radio" name="layer" id="foodLayer" value="food"> Food</label>
+      <label><input type="radio" name="layer" id="elementLayer" value="element"> Elements</label>
+      <label><input type="radio" name="layer" id="crystalLayer" value="crystal"> Crystals</label>
     </details>
 
     <div class="day-controls">
@@ -74,6 +77,10 @@
         <option value="6">Saturday</option>
       </select>
       <button id="nextDay">Next Day →</button>
+    </div>
+
+    <div class="mapping-controls">
+      <button id="cycleMapping">Cycle Mapping</button>
     </div>
 
     <div class="rotation-control">
@@ -92,6 +99,10 @@
         </mask>
       </defs>
     </svg>
+  </div>
+
+  <div id="infoPanel">
+    <!-- Info panel will be populated by script.js -->
   </div>
 
   <footer>
